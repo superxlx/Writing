@@ -16,6 +16,7 @@
 		2A6963231B0E0F9100F423E3 /* WritingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6963221B0E0F9100F423E3 /* WritingTests.m */; };
 		2A6963311B0E1BF200F423E3 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6963301B0E1BF200F423E3 /* Menu.m */; };
 		2A6963341B0E1C0B00F423E3 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */; };
+		2A926EB61B0ED6A50066ADC7 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A926EB51B0ED6A50066ADC7 /* View.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		2A6963301B0E1BF200F423E3 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
 		2A6963321B0E1C0B00F423E3 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
+		2A926EB51B0ED6A50066ADC7 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				2A6963031B0E0F9100F423E3 /* Supporting Files */,
 				2A6963321B0E1C0B00F423E3 /* MenuTableViewController.h */,
 				2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */,
+				2A926EB51B0ED6A50066ADC7 /* View.xib */,
 			);
 			path = Writing;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A926EB61B0ED6A50066ADC7 /* View.xib in Resources */,
 				2A6963121B0E0F9100F423E3 /* Main.storyboard in Resources */,
 				2A6963171B0E0F9100F423E3 /* LaunchScreen.xib in Resources */,
 				2A6963141B0E0F9100F423E3 /* Images.xcassets in Resources */,
@@ -428,6 +432,7 @@
 				2A6963281B0E0F9100F423E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A6963291B0E0F9100F423E3 /* Build configuration list for PBXNativeTarget "WritingTests" */ = {
 			isa = XCConfigurationList;
@@ -436,6 +441,7 @@
 				2A69632B1B0E0F9100F423E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

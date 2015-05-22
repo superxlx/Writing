@@ -29,7 +29,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="fd3-dd-Yfm">
                             <color key="tintColor" red="1" green="0.90744120019999996" blue="0.6488806198" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="aeN-8R-c29" kind="show" id="Tey-eC-YcB"/>
+                                <action selector="addMenu:" destination="XOd-pT-BKu" id="hJm-eh-O4e"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -9,7 +9,7 @@
 #import "MenuTableViewController.h"
 #import "AppDelegate.h"
 @interface MenuTableViewController ()
-
+- (void)buildAddMenu:(UIView *)menu;
 @end
 
 @implementation MenuTableViewController
@@ -54,7 +54,20 @@
     return cell;
 }
 
-
+- (IBAction)addMenu:(id)sender {
+    NSLog(@"add Menu");
+    CGFloat width = self.view.bounds.size.width*0.75;
+    NSArray *views = [[NSBundle mainBundle] loadNibNamed:@"View" owner:nil options:nil];
+    UIView *addMenu = views.firstObject;
+    addMenu.frame = CGRectMake(0, 0, width, width);
+    CGPoint cen = self.view.center;
+    cen.y -= 100;
+    addMenu.center = cen;
+    [[self view]addSubview:addMenu];
+}
+- (IBAction)a:(id)sender {
+    NSLog(@"1");
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
