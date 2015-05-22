@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Menu.h"
 //#import <CoreData/CoreData.h>
 @interface MenuTableViewController : UITableViewController
 @property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic,strong) Menu                   *MenuObject;
+@property (nonatomic,strong) UIView                 *Menu;
 @property (nonatomic,strong) NSArray                *requests;
+@property (nonatomic,strong) NSString               *secret;
+@property (nonatomic,assign) CGFloat width;
+@property (nonatomic,assign) CGFloat height;
+@property (nonatomic,strong) UITextField *secret;
+
+
 @end

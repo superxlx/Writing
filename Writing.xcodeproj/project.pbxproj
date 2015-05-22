@@ -14,9 +14,10 @@
 		2A6963141B0E0F9100F423E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A6963131B0E0F9100F423E3 /* Images.xcassets */; };
 		2A6963171B0E0F9100F423E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A6963151B0E0F9100F423E3 /* LaunchScreen.xib */; };
 		2A6963231B0E0F9100F423E3 /* WritingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6963221B0E0F9100F423E3 /* WritingTests.m */; };
-		2A6963311B0E1BF200F423E3 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6963301B0E1BF200F423E3 /* Menu.m */; };
 		2A6963341B0E1C0B00F423E3 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */; };
-		2A926EB61B0ED6A50066ADC7 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A926EB51B0ED6A50066ADC7 /* View.xib */; };
+		2A779C6D1B0F6AD1005CC5FB /* XLX.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A779C6C1B0F6AD1005CC5FB /* XLX.m */; };
+		2AAA73941B0F9D5600B7BA44 /* 20=禹卫硬笔常规体.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */; };
+		2AAA73951B0F9E9D00B7BA44 /* 20=禹卫硬笔常规体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,11 +43,11 @@
 		2A69631C1B0E0F9100F423E3 /* WritingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WritingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6963211B0E0F9100F423E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A6963221B0E0F9100F423E3 /* WritingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WritingTests.m; sourceTree = "<group>"; };
-		2A69632F1B0E1BF200F423E3 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
-		2A6963301B0E1BF200F423E3 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
 		2A6963321B0E1C0B00F423E3 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
-		2A926EB51B0ED6A50066ADC7 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		2A779C6B1B0F6AD1005CC5FB /* XLX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLX.h; sourceTree = "<group>"; };
+		2A779C6C1B0F6AD1005CC5FB /* XLX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLX.m; sourceTree = "<group>"; };
+		2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "20=禹卫硬笔常规体.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +89,7 @@
 		2A6963021B0E0F9100F423E3 /* Writing */ = {
 			isa = PBXGroup;
 			children = (
-				2A69632F1B0E1BF200F423E3 /* Menu.h */,
-				2A6963301B0E1BF200F423E3 /* Menu.m */,
+				2AAA73921B0F9C0E00B7BA44 /* TTF */,
 				2A6963071B0E0F9100F423E3 /* AppDelegate.h */,
 				2A6963081B0E0F9100F423E3 /* AppDelegate.m */,
 				2A6963101B0E0F9100F423E3 /* Main.storyboard */,
@@ -99,7 +99,8 @@
 				2A6963031B0E0F9100F423E3 /* Supporting Files */,
 				2A6963321B0E1C0B00F423E3 /* MenuTableViewController.h */,
 				2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */,
-				2A926EB51B0ED6A50066ADC7 /* View.xib */,
+				2A779C6B1B0F6AD1005CC5FB /* XLX.h */,
+				2A779C6C1B0F6AD1005CC5FB /* XLX.m */,
 			);
 			path = Writing;
 			sourceTree = "<group>";
@@ -128,6 +129,14 @@
 				2A6963211B0E0F9100F423E3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2AAA73921B0F9C0E00B7BA44 /* TTF */ = {
+			isa = PBXGroup;
+			children = (
+				2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */,
+			);
+			name = TTF;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A926EB61B0ED6A50066ADC7 /* View.xib in Resources */,
+				2AAA73951B0F9E9D00B7BA44 /* 20=禹卫硬笔常规体.ttf in Resources */,
 				2A6963121B0E0F9100F423E3 /* Main.storyboard in Resources */,
 				2A6963171B0E0F9100F423E3 /* LaunchScreen.xib in Resources */,
 				2A6963141B0E0F9100F423E3 /* Images.xcassets in Resources */,
@@ -231,9 +240,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AAA73941B0F9D5600B7BA44 /* 20=禹卫硬笔常规体.ttf in Sources */,
+				2A779C6D1B0F6AD1005CC5FB /* XLX.m in Sources */,
 				2A6963091B0E0F9100F423E3 /* AppDelegate.m in Sources */,
 				2A6963061B0E0F9100F423E3 /* main.m in Sources */,
-				2A6963311B0E1BF200F423E3 /* Menu.m in Sources */,
 				2A69630C1B0E0F9100F423E3 /* Writing.xcdatamodeld in Sources */,
 				2A6963341B0E1C0B00F423E3 /* MenuTableViewController.m in Sources */,
 			);
