@@ -16,9 +16,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    /**
+     设置状态栏为白色
+     */
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    /**
+     *  设置标题
+     */
+    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+    title.textAlignment = NSTextAlignmentCenter;
+    title.text = @"w";
+    title.textColor = [UIColor colorWithRed:((float)253/255)
+                                      green:((float)231/255)
+                                       blue:((float)166/255) alpha:1];
+    title.font = [UIFont fontWithName:@"Baskerville-SemiBolditalic" size:50];
+    title.adjustsFontSizeToFitWidth = true;
+    self.navigationItem.titleView = title;
+
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"a.jpg" ] forBarMetrics:UIBarMetricsDefault];
+    /**
+     *  加载Menu数据
+     */
     AppDelegate *appDlegate = [[UIApplication sharedApplication]delegate];
     _managedObjectContext = [appDlegate managedObjectContext];
     [self loadMenuData];
+    [self.tableView setTableFooterView:[[UIView alloc]init]];
+    self.tableView.backgroundColor = [UIColor colorWithRed:((float) 176 / 255)
+                                                     green:((float) 250 / 255)
+                                                      blue:((float) 252 / 255) alpha:1];
 }
 /**
  *  加载文集data
@@ -53,6 +79,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     Menu *object = _requests[indexPath.row];
     cell.textLabel.text = object.menuName;
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor colorWithRed:((float) 175 / 255)
+                                           green:((float) 163 / 255)
+                                            blue:((float) 226 / 255) alpha:1];
     return cell;
 }
 
@@ -248,18 +278,21 @@
 }
 */
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [_managedObjectContext deleteObject:_requests[indexPath.row]];
+        [_managedObjectContext save:nil];
+        [self loadMenuData];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80;
+}
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {

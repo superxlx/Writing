@@ -19,6 +19,7 @@
 		2AAA73941B0F9D5600B7BA44 /* 20=禹卫硬笔常规体.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */; };
 		2AAA73951B0F9E9D00B7BA44 /* 20=禹卫硬笔常规体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */; };
 		2AB6C4021B1051A800103D69 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6C4011B1051A800103D69 /* Menu.m */; };
+		2AB6C4041B10704400103D69 /* a.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2AB6C4031B10704400103D69 /* a.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "20=禹卫硬笔常规体.ttf"; sourceTree = "<group>"; };
 		2AB6C4001B1051A800103D69 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		2AB6C4011B1051A800103D69 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
+		2AB6C4031B10704400103D69 /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		2A6963021B0E0F9100F423E3 /* Writing */ = {
 			isa = PBXGroup;
 			children = (
+				2AB6C4031B10704400103D69 /* a.jpg */,
 				2AAA73921B0F9C0E00B7BA44 /* TTF */,
 				2A6963071B0E0F9100F423E3 /* AppDelegate.h */,
 				2A6963081B0E0F9100F423E3 /* AppDelegate.m */,
@@ -225,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AAA73951B0F9E9D00B7BA44 /* 20=禹卫硬笔常规体.ttf in Resources */,
+				2AB6C4041B10704400103D69 /* a.jpg in Resources */,
 				2A6963121B0E0F9100F423E3 /* Main.storyboard in Resources */,
 				2A6963171B0E0F9100F423E3 /* LaunchScreen.xib in Resources */,
 				2A6963141B0E0F9100F423E3 /* Images.xcassets in Resources */,
