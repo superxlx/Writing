@@ -18,6 +18,7 @@
 		2A779C6D1B0F6AD1005CC5FB /* XLX.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A779C6C1B0F6AD1005CC5FB /* XLX.m */; };
 		2AAA73941B0F9D5600B7BA44 /* 20=禹卫硬笔常规体.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */; };
 		2AAA73951B0F9E9D00B7BA44 /* 20=禹卫硬笔常规体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */; };
+		2AB6C4021B1051A800103D69 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6C4011B1051A800103D69 /* Menu.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		2A779C6B1B0F6AD1005CC5FB /* XLX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLX.h; sourceTree = "<group>"; };
 		2A779C6C1B0F6AD1005CC5FB /* XLX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLX.m; sourceTree = "<group>"; };
 		2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "20=禹卫硬笔常规体.ttf"; sourceTree = "<group>"; };
+		2AB6C4001B1051A800103D69 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		2AB6C4011B1051A800103D69 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,8 @@
 		2A6962F71B0E0F9100F423E3 = {
 			isa = PBXGroup;
 			children = (
+				2AB6C4001B1051A800103D69 /* Menu.h */,
+				2AB6C4011B1051A800103D69 /* Menu.m */,
 				2A6963021B0E0F9100F423E3 /* Writing */,
 				2A69631F1B0E0F9100F423E3 /* WritingTests */,
 				2A6963011B0E0F9100F423E3 /* Products */,
@@ -241,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AAA73941B0F9D5600B7BA44 /* 20=禹卫硬笔常规体.ttf in Sources */,
+				2AB6C4021B1051A800103D69 /* Menu.m in Sources */,
 				2A779C6D1B0F6AD1005CC5FB /* XLX.m in Sources */,
 				2A6963091B0E0F9100F423E3 /* AppDelegate.m in Sources */,
 				2A6963061B0E0F9100F423E3 /* main.m in Sources */,

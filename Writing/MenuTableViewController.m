@@ -17,15 +17,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     AppDelegate *appDlegate = [[UIApplication sharedApplication]delegate];
-    self.managedObjectContext = [appDlegate managedObjectContext];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Menu" inManagedObjectContext:_managedObjectContext];
-//    self.MenuObject = [[Menu alloc]initWithEntity:entity insertIntoManagedObjectContext:_managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Menu"];
-    NSArray *requests = [_managedObjectContext executeRequest:request error:nil];
-    self.requests = [[NSArray alloc]init];
-    self.requests = requests;
+    _managedObjectContext = [appDlegate managedObjectContext];
+    [self loadMenuData];
 }
-
+/**
+ *  加载文集data
+ */
+-(void)loadMenuData{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = [NSEntityDescription entityForName:@"Menu" inManagedObjectContext:_managedObjectContext];
+    _requests = [_managedObjectContext executeFetchRequest:request error:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -43,14 +45,14 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
    
-    return 10;
+    return [_requests count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    cell.textLabel.text = @"123";
+    Menu *object = _requests[indexPath.row];
+    cell.textLabel.text = object.menuName;
     return cell;
 }
 
@@ -84,11 +86,11 @@
     /**
      添加文集名称输入框
      */
-    UITextField *name = [[UITextField alloc]initWithFrame:CGRectMake(10, self.height, self.width-20, self.height/2)];
-    name.placeholder = @"文集名称";
-    name.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
-    name.borderStyle = UITextBorderStyleRoundedRect;
-    [menu addSubview:name];
+    _name = [[UITextField alloc]initWithFrame:CGRectMake(10, self.height, self.width-20, self.height/2)];
+    _name.placeholder = @"文集名称";
+    _name.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
+    _name.borderStyle = UITextBorderStyleRoundedRect;
+    [menu addSubview:_name];
     /**
      加密按钮
      */
@@ -162,14 +164,14 @@
         button.frame = rect;
         [button setTitle:@"取消" forState:UIControlStateNormal];
     } completion:^(BOOL finished){
-        _secret = [[UITextField alloc]initWithFrame:CGRectMake(_width/12*5, _height/4*9, 0, 0)];
-        _secret.borderStyle = UITextBorderStyleRoundedRect;
-        secret.placeholder = @"请输入密码";
-        secret.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
-        [self.Menu addSubview:secret];
+        _SecretString = [[UITextField alloc]initWithFrame:CGRectMake(_width/12*5, _height/4*9, 0, 0)];
+        _SecretString.borderStyle = UITextBorderStyleRoundedRect;
+        _SecretString.placeholder = @"请输入密码";
+        _SecretString.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
+        [self.Menu addSubview:_SecretString];
         [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0 options:nil animations:^{
             CGRect rect = CGRectMake(_width/12*5, _height/4*9, _width/2, _height/2);
-            secret.frame = rect;
+            _SecretString.frame = rect;
         } completion:^(BOOL finished) {
             
         }];
@@ -185,29 +187,58 @@
         button.frame = rect;
         CGRect rect = CGRectMake(_width/12*5, _height/4*9, 0, 0);
         [UIView animateWithDuration:0.5 animations:^{
-            _secret.frame = rect;
+            _SecretString.frame = rect;
         }];
     } completion:^(BOOL finished) {
-        [_secret removeFromSuperview];
+        [_SecretString removeFromSuperview];
+        [button removeTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(encription:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"加密" forState:UIControlStateNormal];
     }];
     
     
 }
+/**
+ *  addMenu  取消按钮
+ */
 - (void)cancel{
     NSLog(@"cancel");
     [UIView animateWithDuration:0.3 animations:^{
         self.Menu.alpha = 0;
     } completion:^(BOOL finished) {
-        self.Menu.removeFromSuperview;
+        _Menu.removeFromSuperview;
     }];
 }
+/**
+ *  addMenu 保存按钮
+ */
 - (void)save{
     NSLog(@"save");
     [UIView animateWithDuration:0.3 animations:^{
+        _secret = _SecretString.text;
+        _menuName = _name.text;
+        if ([_menuName length] == 0) {
+            _menuName = @"文集";
+        }
         self.Menu.alpha = 0;
     } completion:^(BOOL finished) {
         self.Menu.removeFromSuperview;
+        [self SaveCoreData];
     }];
+}
+- (void)SaveCoreData{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Menu" inManagedObjectContext:_managedObjectContext];
+    Menu *MenuObject = [[Menu alloc]initWithEntity:entity insertIntoManagedObjectContext:_managedObjectContext];
+    if ([_secret length] == 0) {
+        MenuObject.encript = 0;
+    }else{
+        MenuObject.encript = [[NSNumber alloc]initWithBool:YES];
+        MenuObject.secret = _secret;
+    }
+    MenuObject.menuName = _menuName;
+    [_managedObjectContext save:nil];
+    [self loadMenuData];
+    [self.tableView reloadData];
 }
 /*
 // Override to support conditional editing of the table view.

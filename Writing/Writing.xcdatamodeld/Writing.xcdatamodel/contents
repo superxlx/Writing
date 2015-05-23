@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Menu" representedClassName="Writing.Menu" syncable="YES">
+    <entity name="Menu" representedClassName="Menu" syncable="YES">
         <attribute name="encript" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="menuName" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="menuName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="secret" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
