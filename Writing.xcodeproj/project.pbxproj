@@ -16,6 +16,8 @@
 		2A6963231B0E0F9100F423E3 /* WritingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6963221B0E0F9100F423E3 /* WritingTests.m */; };
 		2A6963341B0E1C0B00F423E3 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */; };
 		2A779C6D1B0F6AD1005CC5FB /* XLX.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A779C6C1B0F6AD1005CC5FB /* XLX.m */; };
+		2A903A7A1B108D0A009E1DC5 /* WritingHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A903A791B108D0A009E1DC5 /* WritingHead.png */; };
+		2AA6B1AF1B12180D007EA068 /* essayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AA6B1AE1B12180D007EA068 /* essayTableViewController.m */; };
 		2AAA73941B0F9D5600B7BA44 /* 20=禹卫硬笔常规体.ttf in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */; };
 		2AAA73951B0F9E9D00B7BA44 /* 20=禹卫硬笔常规体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */; };
 		2AB6C4021B1051A800103D69 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AB6C4011B1051A800103D69 /* Menu.m */; };
@@ -49,9 +51,12 @@
 		2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
 		2A779C6B1B0F6AD1005CC5FB /* XLX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLX.h; sourceTree = "<group>"; };
 		2A779C6C1B0F6AD1005CC5FB /* XLX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLX.m; sourceTree = "<group>"; };
+		2A903A791B108D0A009E1DC5 /* WritingHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WritingHead.png; sourceTree = "<group>"; };
+		2AA6B1AD1B12180D007EA068 /* essayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = essayTableViewController.h; sourceTree = "<group>"; };
+		2AA6B1AE1B12180D007EA068 /* essayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = essayTableViewController.m; sourceTree = "<group>"; };
 		2AAA73931B0F9C1D00B7BA44 /* 20=禹卫硬笔常规体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "20=禹卫硬笔常规体.ttf"; sourceTree = "<group>"; };
-		2AB6C4001B1051A800103D69 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
-		2AB6C4011B1051A800103D69 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
+		2AB6C4001B1051A800103D69 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Menu.h; path = ../Menu.h; sourceTree = "<group>"; };
+		2AB6C4011B1051A800103D69 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Menu.m; path = ../Menu.m; sourceTree = "<group>"; };
 		2AB6C4031B10704400103D69 /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,8 +81,6 @@
 		2A6962F71B0E0F9100F423E3 = {
 			isa = PBXGroup;
 			children = (
-				2AB6C4001B1051A800103D69 /* Menu.h */,
-				2AB6C4011B1051A800103D69 /* Menu.m */,
 				2A6963021B0E0F9100F423E3 /* Writing */,
 				2A69631F1B0E0F9100F423E3 /* WritingTests */,
 				2A6963011B0E0F9100F423E3 /* Products */,
@@ -96,7 +99,9 @@
 		2A6963021B0E0F9100F423E3 /* Writing */ = {
 			isa = PBXGroup;
 			children = (
-				2AB6C4031B10704400103D69 /* a.jpg */,
+				2AA6B1B21B121843007EA068 /* Image */,
+				2AA6B1B11B12181B007EA068 /* View */,
+				2AA6B1B01B121812007EA068 /* Model */,
 				2AAA73921B0F9C0E00B7BA44 /* TTF */,
 				2A6963071B0E0F9100F423E3 /* AppDelegate.h */,
 				2A6963081B0E0F9100F423E3 /* AppDelegate.m */,
@@ -105,10 +110,6 @@
 				2A6963151B0E0F9100F423E3 /* LaunchScreen.xib */,
 				2A69630A1B0E0F9100F423E3 /* Writing.xcdatamodeld */,
 				2A6963031B0E0F9100F423E3 /* Supporting Files */,
-				2A6963321B0E1C0B00F423E3 /* MenuTableViewController.h */,
-				2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */,
-				2A779C6B1B0F6AD1005CC5FB /* XLX.h */,
-				2A779C6C1B0F6AD1005CC5FB /* XLX.m */,
 			);
 			path = Writing;
 			sourceTree = "<group>";
@@ -137,6 +138,37 @@
 				2A6963211B0E0F9100F423E3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2AA6B1B01B121812007EA068 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2AB6C4001B1051A800103D69 /* Menu.h */,
+				2AB6C4011B1051A800103D69 /* Menu.m */,
+				2A779C6B1B0F6AD1005CC5FB /* XLX.h */,
+				2A779C6C1B0F6AD1005CC5FB /* XLX.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2AA6B1B11B12181B007EA068 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2A6963321B0E1C0B00F423E3 /* MenuTableViewController.h */,
+				2A6963331B0E1C0B00F423E3 /* MenuTableViewController.m */,
+				2AA6B1AD1B12180D007EA068 /* essayTableViewController.h */,
+				2AA6B1AE1B12180D007EA068 /* essayTableViewController.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		2AA6B1B21B121843007EA068 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				2AB6C4031B10704400103D69 /* a.jpg */,
+				2A903A791B108D0A009E1DC5 /* WritingHead.png */,
+			);
+			name = Image;
 			sourceTree = "<group>";
 		};
 		2AAA73921B0F9C0E00B7BA44 /* TTF */ = {
@@ -229,6 +261,7 @@
 			files = (
 				2AAA73951B0F9E9D00B7BA44 /* 20=禹卫硬笔常规体.ttf in Resources */,
 				2AB6C4041B10704400103D69 /* a.jpg in Resources */,
+				2A903A7A1B108D0A009E1DC5 /* WritingHead.png in Resources */,
 				2A6963121B0E0F9100F423E3 /* Main.storyboard in Resources */,
 				2A6963171B0E0F9100F423E3 /* LaunchScreen.xib in Resources */,
 				2A6963141B0E0F9100F423E3 /* Images.xcassets in Resources */,
@@ -250,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AAA73941B0F9D5600B7BA44 /* 20=禹卫硬笔常规体.ttf in Sources */,
+				2AA6B1AF1B12180D007EA068 /* essayTableViewController.m in Sources */,
 				2AB6C4021B1051A800103D69 /* Menu.m in Sources */,
 				2A779C6D1B0F6AD1005CC5FB /* XLX.m in Sources */,
 				2A6963091B0E0F9100F423E3 /* AppDelegate.m in Sources */,

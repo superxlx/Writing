@@ -8,6 +8,8 @@
 
 #import "MenuTableViewController.h"
 #import "AppDelegate.h"
+#import "XLX.h"
+#import "essayTableViewController.h"
 @interface MenuTableViewController ()
 
 @end
@@ -78,16 +80,36 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     Menu *object = _requests[indexPath.row];
-    cell.textLabel.text = object.menuName;
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.backgroundColor = [UIColor colorWithRed:((float) 175 / 255)
                                            green:((float) 163 / 255)
                                             blue:((float) 226 / 255) alpha:1];
+    UIImageView *headImage = (UIImageView *)[cell.contentView viewWithTag:1];
+    UILabel *MenuName = (UILabel *)[cell.contentView viewWithTag:2];
+    UILabel *essayCount = (UILabel *)[cell.contentView viewWithTag:3];
+    UIImageView *secretImage = (UIImageView *)[cell.contentView viewWithTag:4];
+    headImage.image = [UIImage imageNamed:@"WritingHead.png"];
+    [headImage.layer setMasksToBounds:YES];
+    [headImage.layer setCornerRadius:30];
+    MenuName.text = object.menuName;
+    MenuName.font = [UIFont fontWithName:@"YuWeiYingBi" size:30];
+    essayCount.text = @"共三篇文章";
+    essayCount.font = [UIFont fontWithName:@"YuWeiYingBi" size:15];
+    if ((int)object.encript == 16) {
+        secretImage.image = [UIImage imageNamed:@"locked"];
+    }
     return cell;
 }
 
 - (IBAction)addMenu:(id)sender {
     NSLog(@"add Menu");
+    /**
+     *  添加遮罩层，禁止滑动，禁止点击
+     */
+    [XLX insertLayout:self :self.view];
+    self.tableView.scrollEnabled = NO;
+    [self.addMenuButton setEnabled:NO];
+    //
     self.width = self.view.bounds.size.width*0.75;
     self.Menu = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.width)];
     self.Menu.layer.cornerRadius = 20;
@@ -106,6 +128,14 @@
     
 }
 - (void)buildAddMenu:(UIView *)menu{
+    /**
+     *  初始化密码输入框
+     *
+     *  @return void
+     */
+    _SecretString = [[UITextField alloc]init];
+    
+    
     self.height = menu.bounds.size.height/4;
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
     label.text = @"添加文集";
@@ -124,7 +154,7 @@
     /**
      加密按钮
      */
-    UIButton *encript = [[UIButton alloc]initWithFrame:CGRectMake(0, 2*self.height, self.width, self.height-2)];
+    UIButton *encript = [[UIButton alloc]initWithFrame:CGRectMake(0, 2*self.height, self.width, self.height-1)];
     [encript setTitle:@"加密" forState:normal];
     [menu addSubview:encript];
     [encript addTarget:self action:@selector(encription:) forControlEvents:UIControlEventTouchUpInside];
@@ -134,8 +164,8 @@
      取消、保存 按钮
      */
     UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(0, 3*
-                                                                 _height, _width/2-2, _height)];
-    UIButton *save = [[UIButton alloc]initWithFrame:CGRectMake(_width/2+2, 3*_height, _width/2-2, _height)];
+                                                                 _height, _width/2-1, _height)];
+    UIButton *save = [[UIButton alloc]initWithFrame:CGRectMake(_width/2+1, 3*_height, _width/2-1, _height)];
     [cancel setTitle:@"取消" forState:normal];
     [save setTitle:@"保存" forState:normal];
     [menu addSubview:cancel];
@@ -155,8 +185,6 @@
     cancel.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
     save.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
     
-    
-    
 }
 /**
  *  一个逗比方法 补上四个小角
@@ -166,12 +194,12 @@
  *  @param width  <#width description#>
  *  @param height <#height description#>
  */
-- (void)dobe:(UIView *)button number:(int)namber{
+- (void)dobe:(UIView *)button number:(int)number{
     UIView *patch1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [self patchSetBackground:patch1];
-    UIView *patch2 = [[UIView alloc]initWithFrame:CGRectMake(_width/2-22, 0, 20, 20)];
+    UIView *patch2 = [[UIView alloc]initWithFrame:CGRectMake(_width/2-21, 0, 20, 20)];
     [self patchSetBackground:patch2];
-    UIView *patch3 = [[UIView alloc]initWithFrame:CGRectMake(namber*(_width/2-22), _height-20, 20, 20)];
+    UIView *patch3 = [[UIView alloc]initWithFrame:CGRectMake(number*(_width/2-21), _height-20, 20, 20)];
     [self patchSetBackground:patch3];
     [button addSubview:patch1];
     [button addSubview:patch2];
@@ -237,6 +265,7 @@
         self.Menu.alpha = 0;
     } completion:^(BOOL finished) {
         _Menu.removeFromSuperview;
+        [self reAddMenu];
     }];
 }
 /**
@@ -246,6 +275,7 @@
     NSLog(@"save");
     [UIView animateWithDuration:0.3 animations:^{
         _secret = _SecretString.text;
+        NSLog(@"%@",_secret);
         _menuName = _name.text;
         if ([_menuName length] == 0) {
             _menuName = @"文集";
@@ -254,13 +284,14 @@
     } completion:^(BOOL finished) {
         self.Menu.removeFromSuperview;
         [self SaveCoreData];
+        [self reAddMenu];
     }];
 }
 - (void)SaveCoreData{
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Menu" inManagedObjectContext:_managedObjectContext];
     Menu *MenuObject = [[Menu alloc]initWithEntity:entity insertIntoManagedObjectContext:_managedObjectContext];
     if ([_secret length] == 0) {
-        MenuObject.encript = 0;
+        MenuObject.encript = [[NSNumber alloc]initWithBool:NO];
     }else{
         MenuObject.encript = [[NSNumber alloc]initWithBool:YES];
         MenuObject.secret = _secret;
@@ -270,15 +301,6 @@
     [self loadMenuData];
     [self.tableView reloadData];
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
@@ -290,31 +312,20 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
+-(void) reAddMenu{
+    self.tableView.scrollEnabled = YES;
+    [self.addMenuButton setEnabled:YES];
+    [[self.view viewWithTag:100] removeFromSuperview];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80;
 }
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Menu *Menuindex = self.requests[indexPath.row];
+    if ((int)Menuindex.encript != 16) {
+        [self performSegueWithIdentifier:@"pushEssay" sender:self];
+    }
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
