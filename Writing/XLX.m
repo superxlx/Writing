@@ -9,13 +9,6 @@
 #import "XLX.h"
 
 @implementation XLX
-//func insertBlurView (view: UIView,  style: UIBlurEffectStyle) {
-//    view.backgroundColor = UIColor.clearColor()
-//    var blurEffect       = UIBlurEffect(style: style)
-//    var blurEffectView   = UIVisualEffectView(effect: blurEffect)
-//    blurEffectView.frame = view.bounds
-//    view.insertSubview(blurEffectView, atIndex: 0)
-//}
 +(void)insertBlurView:(id)view :(UIView *)view style:(UIBlurEffectStyle *)style{
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:style];
     UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
@@ -29,5 +22,4 @@
     layout.alpha = 0.5;
     [view addSubview:layout];
 }
-
 @end

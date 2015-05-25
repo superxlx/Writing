@@ -33,11 +33,16 @@
 /**
  *  addMenu 所需的UI组件
  */
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *addMenuButton;
+@property (weak, nonatomic ) IBOutlet UIBarButtonItem          *addMenuButton;
 @property (nonatomic,strong) UIView                   *Menu;
 @property (nonatomic,strong) UITextField              *SecretString;
 @property (nonatomic,strong) UITextField              *name;
 //
 
+/**
+ *  encriptView 所需的UI组件
+ */
+@property (nonatomic,strong) UIView                   *encritView;
+@property (nonatomic,strong) UITextField              *encriptInput;
 
 @end

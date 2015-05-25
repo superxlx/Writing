@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "XLX.h"
 #import "essayTableViewController.h"
+#import "AudioToolbox/AudioToolbox.h"
 @interface MenuTableViewController ()
 
 @end
@@ -18,6 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.width = self.view.bounds.size.width*0.75;
+    self.height = self.width/4;
+    
     /**
      设置状态栏为白色
      */
@@ -36,7 +40,7 @@
     self.navigationItem.titleView = title;
 
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"a.jpg" ] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"a.png" ] forBarMetrics:UIBarMetricsDefault];
     /**
      *  加载Menu数据
      */
@@ -107,10 +111,10 @@
      *  添加遮罩层，禁止滑动，禁止点击
      */
     [XLX insertLayout:self :self.view];
-    self.tableView.scrollEnabled = NO;
-    [self.addMenuButton setEnabled:NO];
+    [self lockMenu];
+    [self cancelEdting];
     //
-    self.width = self.view.bounds.size.width*0.75;
+
     self.Menu = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.width)];
     self.Menu.layer.cornerRadius = 20;
     [self.Menu setBackgroundColor:[UIColor colorWithRed:((float) 254 / 255)
@@ -135,8 +139,6 @@
      */
     _SecretString = [[UITextField alloc]init];
     
-    
-    self.height = menu.bounds.size.height/4;
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
     label.text = @"添加文集";
     label.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
@@ -196,11 +198,11 @@
  */
 - (void)dobe:(UIView *)button number:(int)number{
     UIView *patch1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [self patchSetBackground:patch1];
+    patch1.backgroundColor = button.backgroundColor;
     UIView *patch2 = [[UIView alloc]initWithFrame:CGRectMake(_width/2-21, 0, 20, 20)];
-    [self patchSetBackground:patch2];
+    patch2.backgroundColor = button.backgroundColor;
     UIView *patch3 = [[UIView alloc]initWithFrame:CGRectMake(number*(_width/2-21), _height-20, 20, 20)];
-    [self patchSetBackground:patch3];
+    patch3.backgroundColor = button.backgroundColor;
     [button addSubview:patch1];
     [button addSubview:patch2];
     [button addSubview:patch3];
@@ -312,11 +314,23 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
+/**
+ *  禁止tableview滚动，禁止addMenu按钮点击
+ */
+-(void)lockMenu{
+    self.tableView.scrollEnabled = false;
+    [self.addMenuButton setEnabled:false];
+}
+/**
+ *  恢复tableview滚动  恢复addMenu按钮点击
+ */
 -(void) reAddMenu{
     self.tableView.scrollEnabled = YES;
     [self.addMenuButton setEnabled:YES];
     [[self.view viewWithTag:100] removeFromSuperview];
 }
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80;
 }
@@ -324,6 +338,96 @@
     Menu *Menuindex = self.requests[indexPath.row];
     if ((int)Menuindex.encript != 16) {
         [self performSegueWithIdentifier:@"pushEssay" sender:self];
+    }else{
+        [XLX insertLayout:self :self.view];
+        [self lockMenu];
+        [self buildEncriptView];
+        [self cancelEdting];
+    }
+}
+-(void)cancelEdting{
+    UITapGestureRecognizer *tapSingle = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    tapSingle.numberOfTapsRequired=1;
+    tapSingle.numberOfTouchesRequired=1;
+    [[self.view viewWithTag:100] addGestureRecognizer:tapSingle];
+}
+-(void)tap{
+    [self.view endEditing:true];
+}
+-(void)buildEncriptView{
+    _encritView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.width/2)];
+    _encritView.backgroundColor = [UIColor colorWithRed:((float)36/255)
+                                                 green:((float)46/255)
+                                                  blue:((float)37/255) alpha:1];
+    CGPoint cen = self.view.center;
+    cen.y -=  100;
+    _encritView.center = cen;
+    _encritView.layer.cornerRadius = 20;
+    _encritView.alpha = 0;
+    [self.view addSubview:_encritView];
+    _encriptInput = [[UITextField alloc]initWithFrame:CGRectMake(10, self.height/4, self.width-20, self.height/2)];
+    _encriptInput.borderStyle = UITextBorderStyleRoundedRect;
+    _encriptInput.placeholder = @"请输入密码";
+    _encriptInput.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
+    [_encritView addSubview:_encriptInput];
+    
+    UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(0, _height, _width/2-1, _height)];
+    UIButton *save = [[UIButton alloc]initWithFrame:CGRectMake(_width/2+1, _height, _width/2-1, _height)];
+    [cancel setBackgroundColor:[UIColor colorWithRed:((float)75/255)
+                                              green:((float)91/255)
+                                                blue:((float)82/255) alpha:1]];
+
+    [save setBackgroundColor:[UIColor colorWithRed:((float)75/255)
+                                            green:((float)91/255)
+                                             blue:((float)82/255) alpha:1]];
+
+    [cancel setTitle:@"取消" forState:normal];
+    [save setTitle:@"确定" forState:normal];
+    [cancel.layer setCornerRadius:20];
+    [save.layer setCornerRadius:20];
+    [self dobe:cancel number:1];
+    [self dobe:save number:0];
+    [cancel addTarget:self action:@selector(encriptCancel) forControlEvents:UIControlEventTouchUpInside];
+    [save addTarget:self action:@selector(encriptSave) forControlEvents:UIControlEventTouchUpInside];
+    cancel.titleLabel.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
+    save.titleLabel.font = [UIFont fontWithName:@"YuWeiYingBi" size:20];
+    [_encritView addSubview:cancel];
+    [_encritView addSubview:save];
+    [UIView animateWithDuration:0.3 animations:^{
+        _encritView.alpha = 1;
+    }];
+}
+-(void)encriptCancel{
+    [UIView animateWithDuration:0.3 animations:^{
+        _encritView.alpha=0;
+    } completion:^(BOOL finished) {
+        [_encritView removeFromSuperview];
+        [self reAddMenu];
+        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:true];
+    }];
+}
+-(void)encriptSave{
+    NSString *secret = _encriptInput.text;
+    int index = (int)self.tableView.indexPathForSelectedRow.row;
+    NSString *rightSecret = ((Menu *)_requests[index]).secret;
+    if ([secret  isEqual: rightSecret]) {
+        [UIView animateWithDuration:0.3 animations:^{
+            _encritView.alpha=0;
+        } completion:^(BOOL finished) {
+            [_encritView removeFromSuperview];
+            [self reAddMenu];
+        }];
+        [self performSegueWithIdentifier:@"pushEssay" sender:self];
+    }else{
+        CABasicAnimation *shark = [CABasicAnimation animationWithKeyPath:@"position.x"];
+        shark.fromValue = [NSNumber numberWithDouble:_encritView.center.x - 5];
+        shark.toValue = [NSNumber numberWithDouble:_encritView.center.x + 5];
+        shark.duration = 0.05;
+        shark.repeatCount = 10;
+        [_encritView.layer addAnimation:shark forKey:nil];
+        _encriptInput.text = @"";
+        _encriptInput.placeholder = @"密码错误";
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
 }
 
