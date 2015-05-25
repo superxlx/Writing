@@ -51,6 +51,19 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:((float) 176 / 255)
                                                      green:((float) 250 / 255)
                                                       blue:((float) 252 / 255) alpha:1];
+    
+    
+    
+    /**
+     将返回按钮设置为白色  无title
+     */
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@""
+                                   style:UIBarButtonItemStylePlain target:nil action:nil];
+    [backButton setTintColor:[UIColor whiteColor]];
+    [self.navigationItem setBackBarButtonItem:backButton];
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 /**
  *  加载文集data
@@ -102,9 +115,18 @@
     if ((int)object.encript == 16) {
         secretImage.image = [UIImage imageNamed:@"locked"];
     }
+    
+    UITapGestureRecognizer *tapSingle = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headImageChange)];
+    tapSingle.numberOfTapsRequired=1;
+    tapSingle.numberOfTouchesRequired=1;
+    [headImage addGestureRecognizer:tapSingle];
+    
+    
     return cell;
 }
-
+- (void)headImageChange{
+    NSLog(@"123");
+}
 - (IBAction)addMenu:(id)sender {
     NSLog(@"add Menu");
     /**
