@@ -25,8 +25,9 @@
     UIView *head = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 100)];
     head.backgroundColor = [UIColor redColor];
     self.tableView.tableHeaderView = head;
-    UIView *a =[[UIView alloc]initWithFrame:CGRectMake(100, -50, 100, 100)];
+    UIView *a =[[UIView alloc]initWithFrame:CGRectMake(110, -18, 100, 100)];
     a.backgroundColor = [UIColor blueColor];
+    a.layer.cornerRadius = 50;
     self.navigationItem.titleView = a;
 
 }
